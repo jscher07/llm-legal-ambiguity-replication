@@ -27,10 +27,10 @@ The short version: GPT-4 Turbo disagreed with the courts on ambiguity 50% of the
 ### Approach
 Following a modified version of Choi's confidence estimation method:
 
-1. For each case, GPT-4 Turbo was prompted **100 times** with paraphrased versions of the legal interpretation question
+1. For each case, GPT-4 Turbo was prompted 100 times with paraphrased versions of the legal interpretation question
 2. Each prompt asked the model to respond with a number from 0-100 representing confidence
-3. The model's **top 5 most probable numeric outputs** were recorded along with their log-probabilities
-4. A **weighted average confidence score** was calculated for each prompt
+3. The model's top 5 most probable numeric outputs were recorded along with their log-probabilities
+4. A weighted average confidence score was calculated for each prompt
 
 ### Prompt Structure
 Each prompt followed this general structure:
