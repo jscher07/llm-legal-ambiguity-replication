@@ -1,43 +1,28 @@
-# LLM Ambiguity Detection Study: Replication Materials
+# Replication Materials
 
-This repository contains replication code and data for the empirical study in:
+This repository contains code and data for the empirical study in "Beyond Words: The Risks of Generative Interpretation" by Jonathan Scher, forthcoming in the *Southern California Law Review*. 
 
-**"Beyond Words: The Risks of Generative Interpretation in the Courtroom"**  
-Jonathan Scher  
-*Southern California Law Review* (forthcoming)
+## About the Study
 
-## Overview
+This Note examines whether GPT-4 Turbo can reliably detect textual ambiguity in real-world legal interpretation. I tested the model on eight Ninth Circuit cases, prompting it 100 times per case with paraphrased versions of each legal question. Rather than looking at the model's text outputs (which can be distorted by temperature settings), I extracted the model's internal log-probabilities to get a clearer pircutre of its actual confidence in a given interpretation.
 
-This study evaluates GPT-4 Turbo's ability to detect textual ambiguity across eight Ninth Circuit cases. Unlike prior studies that rely on repeated prompts and "temperature" variance, this study extracts the model's internal log-probabilities, providing a more accurate measure of its confidence.
+The short version: GPT-4 Turbo disagreed with the courts on ambiguity 50% of the time.
 
-### Key Findings
-- GPT-4 Turbo's ambiguity assessments diverged from judicial determinations in 37.5% of cases
-- Even when the model aligned with the court on ambiguity classification, its interpretation of the text sometimes differed
-- The distribution of LLM responses does not reflect real-world survey responses from humans
+### What's Here
 
-## Repository Structure
+- code/gpt4_turbo_logprobs.py: The Python script used to query GPT-4 Turbo and extract log-probabilities
+- data/gpt4_logprobs_100prompts.xlsx: Raw output data and prompt information for all eight cases (100 prompts each)
 
-```
-├── README.md
-├── code/
-│   └── gpt4_turbo_logprobs.py    # Main analysis script
-├── data/
-│   └── gpt4_logprobs_100prompts.xlsx    # Raw output data (8 cases × 100 prompts)
-└── prompts/
-    └── prompt_generation.md      # Methodology for generating paraphrased prompts
-```
+### The Cases
 
-## Methodology
-
-### Cases Analyzed
-1. **Buero v. Amazon.com Servs., Inc.** - "time of authorized attendance"
-2. **Gonzales & Gonzales Bonds & Ins. Agency, Inc. v. Dep't of Homeland Security** - "function or duty"
-3. **Leuthauser v. United States** - "investigative or law enforcement officers"
-4. **M&T Farms v. Fed. Crop Ins. Corp.** - "farming activity"
-5. **Manrique v. Kolc** - "charged with"
-6. **United States v. Paulson** - "on the date of the decedent's death"
-7. **United States v. Scheu** - "abduct"
-8. **United States v. Trumbull** - "semiautomatic weapon" / "large capacity magazine"
+1. *Buero v. Amazon.com Servs., Inc.*
+2. *Gonzales & Gonzales Bonds & Ins. Agency, Inc. v. Dep't of Homeland Security*
+3. *Leuthauser v. United States*
+4. *M&T Farms v. Fed. Crop Ins. Corp.*
+5. *Manrique v. Kolc*
+6. *United States v. Paulson*
+7. *United States v. Scheu*
+8. *United States v. Trumbull*
 
 ### Approach
 Following a modified version of Choi's confidence estimation method:
